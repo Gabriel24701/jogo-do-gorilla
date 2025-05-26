@@ -89,3 +89,8 @@ function humanosAtacam() {
   log(`👥 Humanos atacaram e causaram ${finalDano} de dano.`);
   atualizarStatus();
 }
+
+function log(mensagem) {
+  logEl.innerHTML += `<p>${mensagem}</p>`;
+  logEl.scrollTop = logEl.scrollHeight;
+}
