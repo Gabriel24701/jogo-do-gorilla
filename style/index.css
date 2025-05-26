@@ -11,3 +11,54 @@ header {
   text-align: center;
   padding: 1rem;
 }
+
+main {
+  padding: 1rem;
+}
+
+#status {
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+#acoes button {
+  padding: 0.5rem 1rem;
+  margin: 0.3rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #2c8e2c;
+  color: white;
+}
+
+#acoes button:hover {
+  background-color: #246e24;
+}
+
+#campoDeBatalha {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+#gorila {
+  font-size: 3rem;
+  margin: 1rem;
+}
+
+#humanos {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 600px;
+  justify-content: center;
+}
+
+.humano {
+  font-size: 1.5rem;
+  margin: 3px;
+  transition: transform 0.2s;
+}
