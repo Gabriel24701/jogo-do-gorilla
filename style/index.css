@@ -4,3 +4,10 @@ body {
   margin: 0;
   padding: 0;
 }
+
+header {
+  background-color: #145214;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
