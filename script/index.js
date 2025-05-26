@@ -139,3 +139,6 @@ function carregarEstado() {
   }
   atualizarStatus();
 }
+
+carregarEstado();
+setInterval(humanosAtacam, 3000);
