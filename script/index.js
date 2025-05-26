@@ -48,3 +48,18 @@ function atualizarStatus() {
 
   salvarEstado();
 }
+
+function atacar() {
+  if (!jogoIniciado) return;
+  let mortos = 0;
+  for (let i = 0; i < humanos.length && mortos < 3; i++) {
+    if (humanos[i].vivo) {
+      humanos[i].vivo = false;
+      document.getElementById(`humano-${i}`).className = "humano derrotado";
+      humanosVivos--;
+      mortos++;
+    }
+  }
+  log(`🦍 Gorila atacou e eliminou ${mortos} humanos.`);
+  atualizarStatus();
+}
