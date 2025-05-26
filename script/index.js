@@ -111,3 +111,31 @@ function reiniciarJogo() {
   atualizarStatus();
   jogoIniciado = true;
 }
+
+function salvarEstado() {
+  localStorage.setItem("gorilaVida", gorilaVida);
+  localStorage.setItem("humanos", JSON.stringify(humanos));
+  localStorage.setItem("humanosVivos", humanosVivos);
+}
+
+function carregarEstado() {
+  const vida = localStorage.getItem("gorilaVida");
+  const vivos = localStorage.getItem("humanosVivos");
+  const hJSON = localStorage.getItem("humanos");
+
+  if (vida && hJSON && vivos) {
+    gorilaVida = parseInt(vida);
+    humanos = JSON.parse(hJSON);
+    humanosVivos = parseInt(vivos);
+    humanos.forEach((h, i) => {
+      const div = document.createElement("div");
+      div.textContent = "👤";
+      div.id = `humano-${i}`;
+      div.className = h.vivo ? "humano vivo" : "humano derrotado";
+      humanosEl.appendChild(div);
+    });
+  } else {
+    criarHumanos();
+  }
+  atualizarStatus();
+}
