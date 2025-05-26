@@ -63,3 +63,12 @@ function atacar() {
   log(`🦍 Gorila atacou e eliminou ${mortos} humanos.`);
   atualizarStatus();
 }
+
+function defender() {
+  if (!jogoIniciado) return;
+  defendendo = true;
+  log("🛡️ Gorila está se defendendo.");
+  setTimeout(() => {
+    defendendo = false;
+  }, 2000);
+}
