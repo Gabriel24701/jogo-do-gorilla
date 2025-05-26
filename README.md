@@ -38,6 +38,6 @@ O jogo termina quando:
 
 ## 🖼️ Participantes
 
-> Gabriel Bebé Silva RM562012 Bruno Zanatelli RM563736
+> Gabriel Bebé Silva RM562012 Bruno Zanateli RM563736
 
 ---
