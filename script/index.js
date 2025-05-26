@@ -48,3 +48,97 @@ function atualizarStatus() {
 
   salvarEstado();
 }
+
+function atacar() {
+  if (!jogoIniciado) return;
+  let mortos = 0;
+  for (let i = 0; i < humanos.length && mortos < 3; i++) {
+    if (humanos[i].vivo) {
+      humanos[i].vivo = false;
+      document.getElementById(`humano-${i}`).className = "humano derrotado";
+      humanosVivos--;
+      mortos++;
+    }
+  }
+  log(`🦍 Gorila atacou e eliminou ${mortos} humanos.`);
+  atualizarStatus();
+}
+
+function defender() {
+  if (!jogoIniciado) return;
+  defendendo = true;
+  log("🛡️ Gorila está se defendendo.");
+  setTimeout(() => {
+    defendendo = false;
+  }, 2000);
+}
+
+function curar() {
+  if (!jogoIniciado) return;
+  const cura = Math.floor(Math.random() * 20) + 10;
+  gorilaVida = Math.min(100, gorilaVida + cura);
+  log(`💚 Gorila se curou em ${cura} de vida.`);
+  atualizarStatus();
+}
+
+function humanosAtacam() {
+  if (!jogoIniciado || gorilaVida <= 0 || humanosVivos <= 0) return;
+  const dano = Math.floor(Math.random() * 15) + 5;
+  const finalDano = defendendo ? Math.floor(dano / 2) : dano;
+  gorilaVida -= finalDano;
+  log(`👥 Humanos atacaram e causaram ${finalDano} de dano.`);
+  atualizarStatus();
+}
+
+function log(mensagem) {
+  logEl.innerHTML += `<p>${mensagem}</p>`;
+  logEl.scrollTop = logEl.scrollHeight;
+}
+
+function iniciarJogo() {
+  jogoIniciado = true;
+  log("🔥 Jogo iniciado!");
+}
+
+function reiniciarJogo() {
+  localStorage.clear();
+  gorilaVida = 100;
+  humanos = [];
+  humanosVivos = 100;
+  humanosEl.innerHTML = "";
+  logEl.innerHTML = "";
+  criarHumanos();
+  atualizarStatus();
+  jogoIniciado = true;
+}
+
+function salvarEstado() {
+  localStorage.setItem("gorilaVida", gorilaVida);
+  localStorage.setItem("humanos", JSON.stringify(humanos));
+  localStorage.setItem("humanosVivos", humanosVivos);
+}
+
+function carregarEstado() {
+  const vida = localStorage.getItem("gorilaVida");
+  const vivos = localStorage.getItem("humanosVivos");
+  const hJSON = localStorage.getItem("humanos");
+
+  if (vida && hJSON && vivos) {
+    gorilaVida = parseInt(vida);
+    humanos = JSON.parse(hJSON);
+    humanosVivos = parseInt(vivos);
+    humanos.forEach((h, i) => {
+      const div = document.createElement("div");
+      div.textContent = "👤";
+      div.id = `humano-${i}`;
+      div.className = h.vivo ? "humano vivo" : "humano derrotado";
+      humanosEl.appendChild(div);
+    });
+  } else {
+    criarHumanos();
+  }
+  atualizarStatus();
+}
+
+carregarEstado();
+setInterval(humanosAtacam, 3000);
