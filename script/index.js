@@ -99,3 +99,15 @@ function iniciarJogo() {
   jogoIniciado = true;
   log("🔥 Jogo iniciado!");
 }
+
+function reiniciarJogo() {
+  localStorage.clear();
+  gorilaVida = 100;
+  humanos = [];
+  humanosVivos = 100;
+  humanosEl.innerHTML = "";
+  logEl.innerHTML = "";
+  criarHumanos();
+  atualizarStatus();
+  jogoIniciado = true;
+}
