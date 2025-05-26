@@ -72,3 +72,11 @@ function defender() {
     defendendo = false;
   }, 2000);
 }
+
+function curar() {
+  if (!jogoIniciado) return;
+  const cura = Math.floor(Math.random() * 20) + 10;
+  gorilaVida = Math.min(100, gorilaVida + cura);
+  log(`💚 Gorila se curou em ${cura} de vida.`);
+  atualizarStatus();
+}
