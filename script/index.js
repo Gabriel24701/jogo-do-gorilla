@@ -19,3 +19,32 @@ function criarHumanos() {
     humanosEl.appendChild(div);
   }
 }
+
+function atualizarStatus() {
+  gorilaVidaEl.textContent = gorilaVida;
+  humanosVivosEl.textContent = humanosVivos;
+
+  if (gorilaVida <= 0) {
+    log("❌ O gorila foi derrotado!");
+    jogoIniciado = false;
+  }
+  if (humanosVivos <= 0) {
+    log("🏆 O gorila derrotou todos os humanos!");
+    jogoIniciado = false;
+  }
+
+  const barraEnergia = document.getElementById("barraEnergia");
+  barraEnergia.style.width = gorilaVida + "%";
+
+  // Mudar a cor conforme a vida
+  if (gorilaVida > 60) {
+    barraEnergia.style.backgroundColor = "#4caf50"; // verde
+  } else if (gorilaVida > 30) {
+    barraEnergia.style.backgroundColor = "#ff9800"; // laranja
+  } else {
+    barraEnergia.style.backgroundColor = "#f44336"; // vermelho
+  }
+
+
+  salvarEstado();
+}
