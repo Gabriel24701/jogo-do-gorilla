@@ -94,3 +94,8 @@ function log(mensagem) {
   logEl.innerHTML += `<p>${mensagem}</p>`;
   logEl.scrollTop = logEl.scrollHeight;
 }
+
+function iniciarJogo() {
+  jogoIniciado = true;
+  log("🔥 Jogo iniciado!");
+}
