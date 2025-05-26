@@ -80,3 +80,12 @@ function curar() {
   log(`💚 Gorila se curou em ${cura} de vida.`);
   atualizarStatus();
 }
+
+function humanosAtacam() {
+  if (!jogoIniciado || gorilaVida <= 0 || humanosVivos <= 0) return;
+  const dano = Math.floor(Math.random() * 15) + 5;
+  const finalDano = defendendo ? Math.floor(dano / 2) : dano;
+  gorilaVida -= finalDano;
+  log(`👥 Humanos atacaram e causaram ${finalDano} de dano.`);
+  atualizarStatus();
+}
